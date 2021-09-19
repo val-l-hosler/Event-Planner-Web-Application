@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Create staff account{% endblock %}
+
+{% block header %}Create staff account{% endblock %}
+
+{% block body %}
+<div class="form-container">
+    <form action="" method="post">
+        <label for="register-staff-username">Username: </label>
+        <input type="text" name="register-staff-username" id="register-staff-username" class="input-style" required>
+        <label for="register-staff-password">Password: </label>
+        <input type="text" name="register-staff-password" id="register-staff-password" class="input-style" required>
+        <input type="submit" value="SUBMIT" class="submit-button">
+    </form>
+</div>
+<h4><a href="{{ url_for('logout') }}">Log out {{ g.user.username }}</a></h4>
+{% endblock %}

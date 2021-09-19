@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block header %}Login{% endblock %}
+
+{% block body %}
+<div class="form-container">
+    <form action="" method="post">
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username" class="input-style" required>
+        <label for="password">Password: </label>
+        <input type="text" name="password" id="password" class="input-style" required>
+        <ul class="create-account">
+            <li>
+                <a href="{{ url_for('register') }}" class="create-account-link">Create account</a>
+            </li>
+        </ul>
+        <input type="submit" value="SUBMIT" class="submit-button">
+    </form>
+</div>
+{% endblock %}

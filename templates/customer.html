@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome back {{ g.user.username }}{% endblock %}
+
+{% block header %}Welcome back {{ g.user.username }}{% endblock %}
+
+{% block body %}
+<h3>Request Event</h3>
+<div class="form-container">
+    <form id="add_event" action="" method="post">
+        <label for="event-name">Event name: </label>
+        <input type="text" name="event-name" id="event-name" class="input-style" required>
+        <label for="event-date">Date: </label>
+        <input type="date" name="event-date" id="event-date" class="input-style" required>
+        <input type="submit" value="SUBMIT" class="submit-button">
+    </form>
+</div>
+<h3>Event List</h3>
+<div class="event-container">
+    {% if customer_events|length %}
+        {% for event in customer_events %}
+            {% if loop.index % 2 != 0 %}
+                <ul class="events1">
+                    <li>
+                        Event name: {{ event.name }}
+                    </li>
+                    <li>
+                        Date: {{ event.date }}
+                    </li>
+                    <li>
+                        <a href="{{ url_for('cancel_event', date=event.date) }}" class="cancel1">Cancel event request</a>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="events2">
+                    <li>
+                        Event name: {{ event.name }}
+                    </li>
+                    <li>
+                        Date: {{ event.date }}
+                    </li>
+                    <li>
+                        <a href="{{ url_for('cancel_event', date=event.date) }}" class="cancel2">Cancel event request</a>
+                    </li>
+                </ul>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <ul class="events1">
+            <li>
+                No events are requested
+            </li>
+        </ul>
+    {% endif %}
+</div>
+<h4><a href="{{ url_for('logout') }}">Log out {{ g.user.username }}</a></h4>
+{% endblock %}

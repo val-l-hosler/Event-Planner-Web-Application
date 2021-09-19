@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Welcome{% endblock %} | Catering  Event Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    {% block header %}{% endblock %}
+</header>
+
+<main>
+    {% if request.path == "/" or request.path == "/register" or request.path == "/create_staff_account" %}
+        <div class="container" style="min-width: 50%; max-width: 100%; width: auto;">
+    {% else %}
+        <div class="container">
+    {% endif %}
+    {% with flashes = get_flashed_messages() %}
+        {% if flashes %}
+            {% for message in flashes %}
+                <h2 class="flashes">{{ message }}</h2>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% block body %}
+    {% endblock %}
+    </div>
+</main>
+
+<footer>
+    Created by Valerie Hosler for CS 1520 at University of Pittsburgh
+</footer>
+</body>
+
+</html>

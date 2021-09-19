@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome back {{ g.user.username }}{% endblock %}
+
+{% block header %}Welcome back {{ g.user.username }}{% endblock %}
+
+{% block body %}
+<nav>
+      <ul>
+        <li>
+          <a href="{{ url_for('create_staff_account') }}">Create Staff Account</a>
+        </li>
+      </ul>
+    </nav>
+<h3>Event List</h3>
+<div class="event-container">
+    {% if scheduled_events|length %}
+        {% for event in scheduled_events %}
+            {% if loop.index % 2 != 0 %}
+                <ul class="events1">
+                    <li>
+                        Event name: {{ event.name }}
+                    </li>
+                    <li>
+                        Date: {{ event.date }}
+                    </li>
+                    <li>
+                        {% if scheduled_event_staff|length %}
+                            Event staff: {{ ", ".join(scheduled_event_staff[loop.index0]) }}
+                        {% else %}
+                            Event staff: No staff are scheduled
+                        {% endif %}
+                    </li>
+                </ul>
+
+            {% else %}
+                <ul class="events2">
+                    <li>
+                        Event name: {{ event.name }}
+                    </li>
+                    <li>
+                        Date: {{ event.date }}
+                    </li>
+                    <li>
+                        {% if scheduled_event_staff|length %}
+                            Event staff: {{ ", ".join(scheduled_event_staff[loop.index0]) }}
+                        {% else %}
+                            Event staff: No staff are scheduled
+                        {% endif %}
+                    </li>
+                </ul>
+
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <ul class="events1">
+            <li>
+                No events are scheduled
+            </li>
+        </ul>
+    {% endif %}
+</div>
+<h4><a href="{{ url_for('logout') }}">Log out {{ g.user.username }}</a></h4>
+{% endblock %}

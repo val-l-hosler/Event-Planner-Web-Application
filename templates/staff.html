@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome back {{ g.user.username }}{% endblock %}
+
+{% block header %}Welcome back {{ g.user.username }}{% endblock %}
+
+{% block body %}
+<h3>Available Event List</h3>
+<div class="event-container">
+    {% if available_events|length %}
+        {% for event in available_events %}
+            {% if loop.index % 2 != 0 %}
+                <ul class="events1">
+                    <li>
+                        Event name: {{ event.name }}
+                    </li>
+                    <li>
+                        Date: {{ event.date }}
+                    </li>
+                    <li>
+                        <a href="{{ url_for('sign_up_event', date=event.date) }}" class="cancel1">Sign up to work event</a>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="events2">
+                    <li>
+                        Event name: {{ event.name }}
+                    </li>
+                    <li>
+                        Date: {{ event.date }}
+                    </li>
+                    <li>
+                        <a href="{{ url_for('sign_up_event', date=event.date) }}" class="cancel2">Sign up to work event</a>
+                    </li>
+                </ul>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <ul class="events2">
+            <li>
+                No available events
+            </li>
+        </ul>
+    {% endif %}
+</div>
+<h3>Scheduled Event List</h3>
+<div class="event-container">
+    {% if worked_events|length %}
+        {% for event in worked_events %}
+            {% if loop.index % 2 != 0 %}
+                <ul class="events1">
+                    <li>
+                        Event name: {{ event.name }}
+                    </li>
+                    <li>
+                        Date: {{ event.date }}
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="events2">
+                    <li>
+                        Event name: {{ event.name }}
+                    </li>
+                    <li>
+                        Date: {{ event.date }}
+                    </li>
+                </ul>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <ul class="events1">
+            <li>
+                You are not working any events
+            </li>
+        </ul>
+    {% endif %}
+</div>
+<h4><a href="{{ url_for('logout') }}">Log out {{ g.user.username }}</a></h4>
+{% endblock %}
