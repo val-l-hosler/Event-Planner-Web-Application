@@ -2,7 +2,7 @@
 
 This is a project from CS 1520, Programming Languages for Web Applications. I created a catering event planner web application where a customer can create an account and schedule events, a staff member can view and sign up to work said events, and the owner can view said events and create staff accounts. 
 
-Though the project description did not require extensive styling or responsivity, I tried to make the web application as neat and user-friendly as possible. However, it is not 100% responsive, as the web application only needed to be viewable on a desktop browser.
+Though the project description did not require extensive styling or responsivity, I tried to make the web application as neat and user-friendly as possible with some responsive elements. **However, it is not 100% responsive, as the web application only needed to be viewable on a Google Chrome desktop browser**.
 
 ### :point_right: Visit the [following url](http://valhos2.pythonanywhere.com/) to view a live demo.
 
